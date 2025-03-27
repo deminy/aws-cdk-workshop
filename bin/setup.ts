@@ -28,6 +28,7 @@ const stackVpc = new Vpc(app, `${aws_stack_prefix}vpc`, {
 
 new Eks(app, `${aws_stack_prefix}eks`, {
     vpc: stackVpc.vpc,
+    prefix: aws_stack_prefix,
     env: { account: aws_account_id, region: aws_region },
     stackName: `${aws_stack_prefix}eks`,
     description: "The AWS EKS to test integration of Couchbase Server.",
