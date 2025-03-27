@@ -33,8 +33,8 @@ export AWS_STACK_PREFIX=test- # Set the stack prefix to avoid conflicts with oth
 ```bash
 cdk synth test-vpc
 cdk synth test-vpc > ./test-vpc.yaml
+cdk diff  test-vpc
 
-cdk diff --fail && echo "no diffs found" || echo "diffs found"
 cdk deploy --require-approval never test-vpc
 
 # Use the destroy command only when needed.
@@ -47,6 +47,7 @@ cdk deploy --require-approval never test-vpc
 ```bash
 cdk synth test-eks
 cdk synth test-eks > ./test-eks.yaml
+cdk diff  test-eks
 
 cdk deploy --require-approval never test-eks
 
@@ -60,6 +61,7 @@ cdk deploy --require-approval never test-eks
 ```bash
 cdk synth test-debug
 cdk synth test-debug > ./test-debug.yaml
+cdk diff  test-debug
 
 cdk deploy --require-approval never test-debug
 
