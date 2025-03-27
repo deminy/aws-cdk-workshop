@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { CouchbaseEks } from "../lib/couchbase-eks";
+import { Eks } from "../lib/eks";
+import { Vpc } from "../lib/vpc";
 
+const aws_stack_prefix = process.env.AWS_STACK_PREFIX ?? 'test-';
 const aws_account_id = process.env.AWS_ACCOUNT_ID ?? '';
 const aws_region = process.env.AWS_REGION ?? process.env.AWS_DEFAULT_REGION ?? '';
 if (!aws_account_id) {
@@ -18,8 +20,15 @@ console.log(`AWS region: ${aws_region}`);
 
 const app = new cdk.App();
 
-new CouchbaseEks(app, 'test-couchbase-eks', {
+const stackVpc = new Vpc(app, `${aws_stack_prefix}vpc`, {
     env: { account: aws_account_id, region: aws_region },
-    stackName: 'test-couchbase-eks',
-    description: "Test integration of Couchbase Server with AWS EKS.",
+    stackName: `${aws_stack_prefix}vpc`,
+    description: "The customized VPC to have our EKS service running inside.",
+});
+
+new Eks(app, `${aws_stack_prefix}eks`, {
+    vpc: stackVpc.vpc,
+    env: { account: aws_account_id, region: aws_region },
+    stackName: `${aws_stack_prefix}eks`,
+    description: "The AWS EKS to test integration of Couchbase Server.",
 });

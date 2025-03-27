@@ -9,4 +9,5 @@ cdk.out
 
 # Ignore temporary files
 /*.yaml
+/cdk.context.json
 /package-lock.json

@@ -25,13 +25,32 @@ export AWS_PROFILE=default       # Replace with your AWS profile.
 export AWS_ACCOUNT_ID=1234567890 # Replace with your AWS account ID.
 export AWS_REGION=us-east-1      # Replace with your AWS region.
 
-cdk synth test-couchbase-eks
-cdk synth test-couchbase-eks > ./test-couchbase-eks.yaml
+export AWS_STACK_PREFIX=test- # Set the stack prefix to avoid conflicts with other stacks. Default is `test-`.
+```
+
+### Stack "vpc"
+
+```bash
+cdk synth test-vpc
+cdk synth test-vpc > ./test-vpc.yaml
 
 cdk diff --fail && echo "no diffs found" || echo "diffs found"
-cdk deploy --require-approval never test-couchbase-eks
+cdk deploy --require-approval never test-vpc
 
 # Use the destroy command only when needed.
-# cdk destroy test-couchbase-eks
-# cdk destroy test-couchbase-eks --force
+# cdk destroy test-vpc
+# cdk destroy test-vpc --force
+```
+
+### Stack "eks"
+
+```bash
+cdk synth test-eks
+cdk synth test-eks > ./test-eks.yaml
+
+cdk deploy --require-approval never test-eks
+
+# Use the destroy command only when needed.
+# cdk destroy test-eks
+# cdk destroy test-eks --force
 ```
