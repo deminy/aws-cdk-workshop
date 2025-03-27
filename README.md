@@ -54,3 +54,16 @@ cdk deploy --require-approval never test-eks
 # cdk destroy test-eks
 # cdk destroy test-eks --force
 ```
+
+### Stack "debug"
+
+```bash
+cdk synth test-debug
+cdk synth test-debug > ./test-debug.yaml
+
+cdk deploy --require-approval never test-debug
+
+# Use the destroy command only when needed.
+# cdk destroy test-debug
+# cdk destroy test-debug --force
+```
