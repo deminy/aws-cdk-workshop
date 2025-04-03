@@ -1,5 +1,5 @@
 import * as cdk from 'aws-cdk-lib';
-import { CfnNetworkInterface, SecurityGroup, IVpc } from 'aws-cdk-lib/aws-ec2';
+import { CfnNetworkInterface, SecurityGroup } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
 import { StackPropsWithVpc } from "./props";
 
@@ -11,7 +11,7 @@ import { StackPropsWithVpc } from "./props";
  *     * Visible relationship between the security group and the network interfaces in AWS Console.
  *     * How the network interfaces look like in AWS Console, and if it's safe to remove the network interfaces.
  */
-export class NetworkInterfaces extends cdk.Stack {
+export class TestNetworkInterfaces extends cdk.Stack {
     constructor(scope: Construct, id: string, props: StackPropsWithVpc) {
         super(scope, id, props);
 

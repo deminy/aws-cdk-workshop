@@ -2,8 +2,9 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { StackProps, StackPropsWithVpc } from "../lib/props";
-import { NetworkInterfaces } from "../lib/network-interfaces";
-import { Vpc } from "../lib/vpc";
+import { TestNetworkInterfaces } from "../lib/network-interfaces";
+import { TestStateMachine } from "../lib/test-state-machine";
+import { TestVpc } from "../lib/vpc";
 
 const aws_stack_prefix = process.env.AWS_STACK_PREFIX ?? 'test-';
 const aws_account_id = process.env.AWS_ACCOUNT_ID ?? '';
@@ -26,10 +27,16 @@ const stackProps: StackProps = {
 
 const app = new cdk.App();
 
-const stackVpc = new Vpc(app, `${aws_stack_prefix}vpc`, {
+const stackVpc = new TestVpc(app, `${aws_stack_prefix}vpc`, {
     ...stackProps,
     stackName: `${aws_stack_prefix}vpc`,
     description: "The customized VPC to have our EKS service running inside.",
+});
+
+new TestStateMachine(app, `${aws_stack_prefix}state-machine`, {
+    ...stackProps,
+    stackName: `${aws_stack_prefix}state-machine`,
+    description: "Test state machines in AWS.",
 });
 
 const stackPropsWithVpc: StackPropsWithVpc = {
@@ -37,7 +44,7 @@ const stackPropsWithVpc: StackPropsWithVpc = {
     vpc: stackVpc.vpc,
 };
 
-new NetworkInterfaces(app, `${aws_stack_prefix}eni`, {
+new TestNetworkInterfaces(app, `${aws_stack_prefix}eni`, {
     ...stackPropsWithVpc,
     stackName: `${aws_stack_prefix}eni`,
     description: 'To create new security group with network interfaces attached it.',
