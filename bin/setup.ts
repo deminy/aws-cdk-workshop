@@ -5,6 +5,8 @@ import { StackProps, StackPropsWithVpc } from "../src/props";
 import { TestLayerSwoole } from "../src/stacks/layer-swoole";
 import { TestNetworkInterfaces } from "../src/stacks/network-interfaces";
 import { TestStateMachine } from "../src/stacks/state-machine";
+import { TestStateMachineMap } from "../src/stacks/state-machine-map";
+import { TestStateMachineNested } from "../src/stacks/state-machine-nested";
 import { TestVpc } from "../src/stacks/vpc";
 
 const aws_stack_prefix = process.env.AWS_STACK_PREFIX ?? 'test-';
@@ -38,6 +40,18 @@ new TestStateMachine(app, `${aws_stack_prefix}state-machine`, {
     ...stackProps,
     stackName: `${aws_stack_prefix}state-machine`,
     description: "Test state machines in AWS.",
+});
+
+new TestStateMachineMap(app, `${aws_stack_prefix}state-machine-map`, {
+    ...stackProps,
+    stackName: `${aws_stack_prefix}state-machine-map`,
+    description: "How to use map in state machines.",
+});
+
+new TestStateMachineNested(app, `${aws_stack_prefix}state-machine-nested`, {
+    ...stackProps,
+    stackName: `${aws_stack_prefix}state-machine-nested`,
+    description: "To test state machine execution within another state machine.",
 });
 
 const stackVpc = new TestVpc(app, `${aws_stack_prefix}vpc`, {

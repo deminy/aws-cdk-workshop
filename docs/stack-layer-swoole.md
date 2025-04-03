@@ -10,8 +10,8 @@ cdk diff  test-layer-swoole
 cdk deploy --require-approval never test-layer-swoole
 
 # To run the Lambda function in AWS:
-aws lambda invoke --function-name test-layer-swoole --cli-binary-format raw-in-base64-out ./response.json
-cat ./response.json | jq .
+aws lambda invoke --function-name test-layer-swoole --cli-binary-format raw-in-base64-out /tmp/response.json
+cat /tmp/response.json | jq .
 
 # Use the destroy command only when needed.
 # cdk destroy test-layer-swoole

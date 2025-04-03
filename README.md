@@ -30,6 +30,12 @@ export AWS_STACK_PREFIX=test- # Set the stack prefix to avoid conflicts with oth
 
 ## List of Stacks
 
-* [test-state-machine](docs/stack-state-machine.md) - To test state machines in AWS.
+* [test-layer-swoole](docs/stack-layer-swoole.md) - To Test the Swoole layer of [Bref].
+* state machines:
+  * [test-state-machine](docs/stack-state-machine.md) - To test state machines in AWS.
+  * [test-state-machine-map](docs/stack-state-machine-map.md) - How to use map in state machines.
+  * [test-state-machine-nested](docs/stack-state-machine-nested.md) - To test state machine execution within another state machine.
 * [test-vpc](docs/stack-vpc.md) - An example to create a VPC in AWS.
 * [test-eni](docs/stack-eni.md) - To create a new security group with two new network interfaces attached to it.
+
+[Bref]: https://bref.sh
