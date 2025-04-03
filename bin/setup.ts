@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { StackProps, StackPropsWithVpc } from "../lib/props";
-import { TestNetworkInterfaces } from "../lib/network-interfaces";
-import { TestStateMachine } from "../lib/test-state-machine";
-import { TestVpc } from "../lib/vpc";
+import { StackProps, StackPropsWithVpc } from "../src/props";
+import { TestNetworkInterfaces } from "../src/stacks/network-interfaces";
+import { TestStateMachine } from "../src/stacks/test-state-machine";
+import { TestVpc } from "../src/stacks/vpc";
 
 const aws_stack_prefix = process.env.AWS_STACK_PREFIX ?? 'test-';
 const aws_account_id = process.env.AWS_ACCOUNT_ID ?? '';

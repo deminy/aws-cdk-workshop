@@ -1,7 +1,7 @@
 import * as cdk from 'aws-cdk-lib';
 import { CfnNetworkInterface, SecurityGroup } from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
-import { StackPropsWithVpc } from "./props";
+import { StackPropsWithVpc } from "../props";
 
 /**
  * This stack is to create a new security group with two new network interfaces attached to it.

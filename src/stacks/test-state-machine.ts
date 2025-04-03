@@ -4,7 +4,7 @@ import { LogGroup, RetentionDays } from 'aws-cdk-lib/aws-logs';
 import { Chain, DefinitionBody, Parallel, StateMachine, TaskInput } from 'aws-cdk-lib/aws-stepfunctions';
 import { LambdaInvoke } from 'aws-cdk-lib/aws-stepfunctions-tasks';
 import { Construct } from 'constructs';
-import { StackProps } from './props';
+import { StackProps } from '../props';
 
 export class TestStateMachine extends Stack {
   constructor(scope: Construct, id: string, props: StackProps) {

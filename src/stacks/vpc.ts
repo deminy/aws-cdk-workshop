@@ -1,7 +1,7 @@
 import { Stack } from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import { Construct } from 'constructs';
-import { StackProps } from "./props";
+import { StackProps } from "../props";
 
 export class TestVpc extends Stack {
     public readonly vpc: ec2.Vpc;
