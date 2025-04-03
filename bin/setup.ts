@@ -1,10 +1,9 @@
 #!/usr/bin/env node
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
-import { Debug } from "../lib/debug";
-import { Eks } from "../lib/eks";
+import { StackProps, StackPropsWithVpc } from "../lib/props";
+import { NetworkInterfaces } from "../lib/network-interfaces";
 import { Vpc } from "../lib/vpc";
-import {CustomizedProps} from "../lib/props";
 
 const aws_stack_prefix = process.env.AWS_STACK_PREFIX ?? 'test-';
 const aws_account_id = process.env.AWS_ACCOUNT_ID ?? '';
@@ -20,30 +19,26 @@ if (!aws_region) {
 console.log(`AWS account ID: ${aws_account_id}`);
 console.log(`AWS region: ${aws_region}`);
 
+const stackProps: StackProps = {
+    prefix: aws_stack_prefix,
+    env: { account: aws_account_id, region: aws_region },
+};
+
 const app = new cdk.App();
 
 const stackVpc = new Vpc(app, `${aws_stack_prefix}vpc`, {
-    env: { account: aws_account_id, region: aws_region },
+    ...stackProps,
     stackName: `${aws_stack_prefix}vpc`,
     description: "The customized VPC to have our EKS service running inside.",
 });
 
-const customizedProps: CustomizedProps = {
+const stackPropsWithVpc: StackPropsWithVpc = {
+    ...stackProps,
     vpc: stackVpc.vpc,
-    prefix: aws_stack_prefix,
 };
 
-const eks = new Eks(app, `${aws_stack_prefix}eks`, {
-    ...customizedProps,
-    env: { account: aws_account_id, region: aws_region },
-    stackName: `${aws_stack_prefix}eks`,
-    description: "The AWS EKS to test integration of Couchbase Server.",
-});
-
-new Debug(app, `${aws_stack_prefix}debug`, {
-    ...customizedProps,
-    cluster: eks.cluster,
-    env: { account: aws_account_id, region: aws_region },
-    stackName: `${aws_stack_prefix}debug`,
-    description: "For debugging/testing purposes only.",
+new NetworkInterfaces(app, `${aws_stack_prefix}eni`, {
+    ...stackPropsWithVpc,
+    stackName: `${aws_stack_prefix}eni`,
+    description: 'To create new security group with network interfaces attached it.',
 });

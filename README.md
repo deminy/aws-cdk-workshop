@@ -1,6 +1,6 @@
-# The CDK TypeScript project of couchbase-eks
+# Workshop: AWS CDK
 
-This project is to test the integration between Couchbase Server and AWS EKS. It uses AWS CDK v2 to manage the CloudFormation stack in AWS.
+Demonstration of building API services using AWS CDK, with each stack configured as Infrastructure as Code (IaC).
 
 ## Setup The Project With AWS CDK
 
@@ -30,6 +30,8 @@ export AWS_STACK_PREFIX=test- # Set the stack prefix to avoid conflicts with oth
 
 ### Stack "vpc"
 
+A first example to create a VPC in AWS.
+
 ```bash
 cdk synth test-vpc
 cdk synth test-vpc > ./test-vpc.yaml
@@ -42,30 +44,18 @@ cdk deploy --require-approval never test-vpc
 # cdk destroy test-vpc --force
 ```
 
-### Stack "eks"
+### Stack "eni"
+
+To create a new security group with two new network interfaces attached to it.
 
 ```bash
-cdk synth test-eks
-cdk synth test-eks > ./test-eks.yaml
-cdk diff  test-eks
+cdk synth test-eni
+cdk synth test-eni > ./test-eni.yaml
+cdk diff  test-eni
 
-cdk deploy --require-approval never test-eks
-
-# Use the destroy command only when needed.
-# cdk destroy test-eks
-# cdk destroy test-eks --force
-```
-
-### Stack "debug"
-
-```bash
-cdk synth test-debug
-cdk synth test-debug > ./test-debug.yaml
-cdk diff  test-debug
-
-cdk deploy --require-approval never test-debug
+cdk deploy --require-approval never test-eni
 
 # Use the destroy command only when needed.
-# cdk destroy test-debug
-# cdk destroy test-debug --force
+# cdk destroy test-eni
+# cdk destroy test-eni --force
 ```
