@@ -3,7 +3,7 @@ import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { StackProps, StackPropsWithVpc } from "../src/props";
 import { TestNetworkInterfaces } from "../src/stacks/network-interfaces";
-import { TestStateMachine } from "../src/stacks/test-state-machine";
+import { TestStateMachine } from "../src/stacks/state-machine";
 import { TestVpc } from "../src/stacks/vpc";
 
 const aws_stack_prefix = process.env.AWS_STACK_PREFIX ?? 'test-';
