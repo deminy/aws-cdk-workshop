@@ -28,52 +28,8 @@ export AWS_REGION=us-east-1      # Replace with your AWS region.
 export AWS_STACK_PREFIX=test- # Set the stack prefix to avoid conflicts with other stacks. Default is `test-`.
 ```
 
-### Stack "vpc"
+## List of Stacks
 
-A first example to create a VPC in AWS.
-
-```bash
-cdk synth test-vpc
-cdk synth test-vpc > ./test-vpc.yaml
-cdk diff  test-vpc
-
-cdk deploy --require-approval never test-vpc
-
-# Use the destroy command only when needed.
-# cdk destroy test-vpc
-# cdk destroy test-vpc --force
-```
-
-### Stack "state-machine"
-
-To test state machines in AWS.
-
-```bash
-cdk synth test-state-machine
-cdk synth test-state-machine > ./test-state-machine.yaml
-cdk diff  test-state-machine
-
-cdk deploy --require-approval never test-state-machine
-
-aws stepfunctions start-execution --state-machine-arn arn:aws:states:${AWS_REGION}:${AWS_ACCOUNT_ID}:stateMachine:test-state-machine
-
-# Use the destroy command only when needed.
-# cdk destroy test-state-machine
-# cdk destroy test-state-machine --force
-```
-
-### Stack "eni"
-
-To create a new security group with two new network interfaces attached to it.
-
-```bash
-cdk synth test-eni
-cdk synth test-eni > ./test-eni.yaml
-cdk diff  test-eni
-
-cdk deploy --require-approval never test-eni
-
-# Use the destroy command only when needed.
-# cdk destroy test-eni
-# cdk destroy test-eni --force
-```
+* [test-state-machine](docs/stack-state-machine.md) - To test state machines in AWS.
+* [test-vpc](docs/stack-vpc.md) - An example to create a VPC in AWS.
+* [test-eni](docs/stack-eni.md) - To create a new security group with two new network interfaces attached to it.
