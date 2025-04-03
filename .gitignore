@@ -11,3 +11,6 @@ cdk.out
 /*.yaml
 /cdk.context.json
 /package-lock.json
+
+# Ignore Composer packages
+vendor

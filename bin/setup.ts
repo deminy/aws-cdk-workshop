@@ -2,6 +2,7 @@
 import 'source-map-support/register';
 import * as cdk from 'aws-cdk-lib';
 import { StackProps, StackPropsWithVpc } from "../src/props";
+import { TestLayerSwoole } from "../src/stacks/layer-swoole";
 import { TestNetworkInterfaces } from "../src/stacks/network-interfaces";
 import { TestStateMachine } from "../src/stacks/state-machine";
 import { TestVpc } from "../src/stacks/vpc";
@@ -27,16 +28,22 @@ const stackProps: StackProps = {
 
 const app = new cdk.App();
 
-const stackVpc = new TestVpc(app, `${aws_stack_prefix}vpc`, {
+new TestLayerSwoole(app, `${aws_stack_prefix}layer-swoole`, {
     ...stackProps,
-    stackName: `${aws_stack_prefix}vpc`,
-    description: "The customized VPC to have our EKS service running inside.",
+    stackName: `${aws_stack_prefix}layer-swoole`,
+    description: "Test the Swoole layer of Bref.",
 });
 
 new TestStateMachine(app, `${aws_stack_prefix}state-machine`, {
     ...stackProps,
     stackName: `${aws_stack_prefix}state-machine`,
     description: "Test state machines in AWS.",
+});
+
+const stackVpc = new TestVpc(app, `${aws_stack_prefix}vpc`, {
+    ...stackProps,
+    stackName: `${aws_stack_prefix}vpc`,
+    description: "The customized VPC to have our EKS service running inside.",
 });
 
 const stackPropsWithVpc: StackPropsWithVpc = {

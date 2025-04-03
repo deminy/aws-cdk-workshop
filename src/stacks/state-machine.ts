@@ -29,7 +29,7 @@ export class TestStateMachine extends Stack {
       logGroup: new LogGroup(this, "Log Group", {
         logGroupName: name,
         retention: RetentionDays.ONE_DAY,
-        removalPolicy: RemovalPolicy.DESTROY
+        removalPolicy: RemovalPolicy.DESTROY,
       }),
     });
 
