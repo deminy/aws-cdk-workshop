@@ -35,6 +35,7 @@ export AWS_STACK_PREFIX=test- # Set the stack prefix to avoid conflicts with oth
   * [test-state-machine](docs/stack-state-machine.md) - To test state machines in AWS.
   * [test-state-machine-map](docs/stack-state-machine-map.md) - How to use map in state machines.
   * [test-state-machine-nested](docs/stack-state-machine-nested.md) - To test state machine execution within another state machine.
+  * [test-state-machine-selective-execution](docs/stack-state-machine-selective-execution.md) - How to run states selectively in a state machine.
 * [test-vpc](docs/stack-vpc.md) - An example to create a VPC in AWS.
 * [test-eni](docs/stack-eni.md) - To create a new security group with two new network interfaces attached to it.
 

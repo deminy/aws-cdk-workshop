@@ -7,6 +7,7 @@ import { TestNetworkInterfaces } from "../src/stacks/network-interfaces";
 import { TestStateMachine } from "../src/stacks/state-machine";
 import { TestStateMachineMap } from "../src/stacks/state-machine-map";
 import { TestStateMachineNested } from "../src/stacks/state-machine-nested";
+import { TestStateMachineSelectiveExecution } from "../src/stacks/state-machine-selective-execution";
 import { TestVpc } from "../src/stacks/vpc";
 
 const aws_stack_prefix = process.env.AWS_STACK_PREFIX ?? 'test-';
@@ -52,6 +53,12 @@ new TestStateMachineNested(app, `${aws_stack_prefix}state-machine-nested`, {
     ...stackProps,
     stackName: `${aws_stack_prefix}state-machine-nested`,
     description: "To test state machine execution within another state machine.",
+});
+
+new TestStateMachineSelectiveExecution(app, `${aws_stack_prefix}state-machine-selective-execution`, {
+    ...stackProps,
+    stackName: `${aws_stack_prefix}state-machine-selective-execution`,
+    description: "How to run states selectively in a state machine.",
 });
 
 const stackVpc = new TestVpc(app, `${aws_stack_prefix}vpc`, {
