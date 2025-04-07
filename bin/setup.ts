@@ -26,6 +26,13 @@ console.log(`AWS region: ${aws_region}`);
 
 const stackProps: StackProps = {
     prefix: aws_stack_prefix,
+    lambdaLayers: {
+        // Bref v2.4.1. @see https://runtimes.bref.sh/
+        bref: 'arn:aws:lambda:us-east-1:534081306603:layer:php-82:91',
+
+        // @see https://github.com/brefphp/extra-php-extensions/blob/master/layers.json
+        swoole: 'arn:aws:lambda:us-east-1:403367587399:layer:swoole-php-82:7',
+    },
     env: { account: aws_account_id, region: aws_region },
 };
 

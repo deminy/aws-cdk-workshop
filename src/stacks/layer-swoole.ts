@@ -23,10 +23,8 @@ export class TestLayerSwoole extends Stack {
 
       runtime: Runtime.PROVIDED_AL2,
       layers: [
-        // Bref v2.4.1. @see https://runtimes.bref.sh/
-        LayerVersion.fromLayerVersionArn(this, `lambda-layer-bref`, 'arn:aws:lambda:us-east-1:534081306603:layer:php-82:91'),
-        // @see https://github.com/brefphp/extra-php-extensions/blob/master/layers.json
-        LayerVersion.fromLayerVersionArn(this, `lambda-layer-swoole`, 'arn:aws:lambda:us-east-1:403367587399:layer:swoole-php-82:7'),
+        LayerVersion.fromLayerVersionArn(this, `lambda-layer-bref`, props.lambdaLayers.bref),
+        LayerVersion.fromLayerVersionArn(this, `lambda-layer-swoole`, props.lambdaLayers.swoole),
       ],
 
       timeout: Duration.seconds(120), // 2 minutes.
