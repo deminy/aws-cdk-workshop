@@ -1,6 +1,6 @@
 # Stack "layer-swoole"
 
-To Test the Swoole layer of Bref.
+To test the Swoole layer of Bref.
 
 ```bash
 cdk synth test-layer-swoole

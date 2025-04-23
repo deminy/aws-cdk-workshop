@@ -4,6 +4,7 @@ import * as cdk from 'aws-cdk-lib';
 import { StackProps, StackPropsWithVpc } from "../src/props";
 import { TestLayerSwoole } from "../src/stacks/layer-swoole";
 import { TestNetworkInterfaces } from "../src/stacks/network-interfaces";
+import { TestRoles } from "../src/stacks/roles";
 import { TestStateMachine } from "../src/stacks/state-machine";
 import { TestStateMachineMap } from "../src/stacks/state-machine-map";
 import { TestStateMachineNested } from "../src/stacks/state-machine-nested";
@@ -42,6 +43,12 @@ new TestLayerSwoole(app, `${aws_stack_prefix}layer-swoole`, {
     ...stackProps,
     stackName: `${aws_stack_prefix}layer-swoole`,
     description: "Test the Swoole layer of Bref.",
+});
+
+new TestRoles(app, `${aws_stack_prefix}roles`, {
+    ...stackProps,
+    stackName: `${aws_stack_prefix}roles`,
+    description: "Test AWS role creation.",
 });
 
 new TestStateMachine(app, `${aws_stack_prefix}state-machine`, {

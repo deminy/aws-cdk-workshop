@@ -19,6 +19,7 @@ cd "${CURRENT_DIR}/.."
 
 if [[ $# -eq 0 ]] ; then
   stacks=(
+    "roles"
     "eni"
     "vpc"
   )

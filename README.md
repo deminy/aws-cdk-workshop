@@ -31,6 +31,7 @@ export AWS_STACK_PREFIX=test- # Set the stack prefix to avoid conflicts with oth
 ## List of Stacks
 
 * [test-layer-swoole](docs/stack-layer-swoole.md) - To Test the Swoole layer of [Bref].
+* [test-roles](docs/stack-roles.md) - To test AWS role creation.
 * state machines:
   * [test-state-machine](docs/stack-state-machine.md) - To test state machines in AWS.
   * [test-state-machine-map](docs/stack-state-machine-map.md) - How to use map in state machines.
